@@ -28,3 +28,11 @@ void Node::add(std::string word, int frequence) {
 		n.frequence = frequence;
 	}
 }
+
+Node Node::searchSon(std::string c)
+{
+  auto res = std::find_if(this->sons.begin(), this->sons.end(), 
+      [c](const Node n) -> bool
+      {return n.val == c;});
+  return res[0];
+}
