@@ -9,6 +9,7 @@ Node parseFile(std::string filename) {
 	int frequence;
 	Node trie("", 0);
   while (infile >> word >> frequence) {
+		trie.add(word, frequence);
 		std::cout << word << frequence << std::endl;
 	}
 	return trie;
