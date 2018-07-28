@@ -1,8 +1,14 @@
 #include "node.hh"
 
+void Node::addSon(std::list<Node> sons, int frequency, std::string& data, std::string word) {
+	sons.push_back(Node(data.length(), word.length(), frequency));
+	data.append(word);
+	//return node
+}
+
 void Node::insert(std::string word, int frequency, std::string& data) {
 	int wordLength = word.length();
-	int dataLength = data.length();
+	// int dataLength = data.size();
 	for (auto it = sons_.begin(); it != sons_.end(); it++) {
 		int start = it->start_;
 		int length = it->length_;
@@ -35,4 +41,8 @@ void Node::insert(std::string word, int frequency, std::string& data) {
 		}
 		addSon(sons_, frequency, data, word);
 	}
+}
+
+void Node::serialize() {
+
 }
