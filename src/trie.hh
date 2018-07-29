@@ -47,6 +47,8 @@ class Trie {
      * @param The stream linked to the output file.
      */
     void serialize(std::fstream& output);
+
+
   private:
     std::string data_;
     Node root_;
