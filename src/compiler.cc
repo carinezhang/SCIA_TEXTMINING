@@ -25,12 +25,12 @@ int main(int argc, char **argv)
   }
   // Process file
   Trie trie = Trie();
-  char *word;
-  char *freq;
+  char *word = nullptr;
+  int freq;
   while (infile >> word >> freq)
   {
     std::string w(word);
-    trie.insert(w, std::atoi(freq));
+    trie.insert(w, freq);
   }
   infile.close();
   // Write the trie in the output file
