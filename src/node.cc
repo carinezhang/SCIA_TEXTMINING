@@ -25,8 +25,6 @@ void Node::addSon(int frequency, std::string& data, std::string word) {
 
 void Node::insert(std::string word, int frequency, std::string& data) {
 
-  //std::cout << data << std::endl;
-
 	int wordLength = word.length();
 	// int dataLength = data.size();
 
@@ -34,8 +32,8 @@ void Node::insert(std::string word, int frequency, std::string& data) {
 		int start = it->start_;
 		int length = it->length_;
 		if (data[start] == word.at(0)) {
-			int i = 1;
-			while (data[start + i] == word.at(i)){
+			int i = 0;
+			while (i < wordLength && i <length && data[start + i] == word.at(i)){
 				i++;
 			}
 			if (i == wordLength && length == i) {
