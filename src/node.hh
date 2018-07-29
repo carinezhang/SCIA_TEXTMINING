@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <list>
 #include <string>
 
@@ -10,6 +11,12 @@ class Node {
 		void insert(std::string word, int frequency, std::string& data);
 		void addSon(std::list<Node> sons, int frequency, std::string& data, std::string word);
 		void serialize();
+    /**
+     * Print the node and its sons.
+     *
+     * @param The string containing all the substrings.
+     */
+    void print(const std::string data);
 	private:
 		int start_;
 		int length_;

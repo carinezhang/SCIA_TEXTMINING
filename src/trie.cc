@@ -3,7 +3,6 @@
 Trie::Trie()
 {
   this->root_ = Node();
-  this->data_ = "";
 }
 
 Trie::~Trie()
@@ -20,4 +19,10 @@ void Trie::serialize(std::fstream& output)
   // TODO: Add output into the node.serialize() prototype
   output.is_open();
   root_.serialize();
+}
+
+void Trie::print()
+{
+  std::cout << "===================" << std::endl;
+  this->root_.print(data_);
 }

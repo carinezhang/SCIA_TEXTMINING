@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 PROJECT(TextMining CXX)
 set(CMAKE_CXX_COMPILER "g++")
-set(CMAKE_CXX_FLAGS "-std=c++14 -pedantic -Wall -Wextra -Werror -O2")
+set(CMAKE_CXX_FLAGS "-std=c++14 -pedantic -Wall -Wextra -Werror -O0 -g")
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3")
 
 ADD_CUSTOM_TARGET (doc doxygen ./doc/doc.conf)

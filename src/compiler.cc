@@ -1,13 +1,14 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <sstream>
 
 #include "trie.hh"
 #include "node.hh"
 
 int main(int argc, char **argv)
 {
-  std::cout << "Size structure: 4";
+  std::cout << "Size structure: 4" << std::endl;
   if (argc != 3)
   {
     std::cout << "Usage: ./TextMiningCompiler /path/to/word/freq.txt /path/to/output/dict.bin" << std::endl;
@@ -25,21 +26,26 @@ int main(int argc, char **argv)
   }
   // Process file
   Trie trie = Trie();
-  char *word = nullptr;
-  int freq;
-  while (infile >> word >> freq)
+  std::string line;
+  while (std::getline(infile, line))
   {
-    std::string w(word);
-    trie.insert(w, freq);
+    std::istringstream iss(line);
+    std::string word;
+    int freq;
+    if (!(iss >> word >> freq))
+      break;
+
+    std::cout << "Line : " << word << " " << freq << std::endl;
+    std::cout << "data :" << trie.data_ << std::endl;
+
+    trie.insert(word, freq);
   }
+
+  trie.print();
+
   infile.close();
   // Write the trie in the output file
   std::fstream output(output_name, std::ios::binary);
-  if (!output.is_open())
-  {
-    std::cout << "File not found: " << filename << std::endl;
-    return 255;
-  }
   trie.serialize(output);
   output.close();
   return 0;

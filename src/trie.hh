@@ -46,9 +46,13 @@ class Trie {
      */
     void serialize(std::fstream& output);
 
+    /**
+     * Print the trie.
+     */
+    void print();
     //std::vector<Node> search(std::string word, int dist);
 
-  private:
     std::string data_;
+  private:
     Node root_;
 };

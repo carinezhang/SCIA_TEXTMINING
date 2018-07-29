@@ -22,6 +22,9 @@ void Node::addSon(std::list<Node> sons, int frequency, std::string& data, std::s
 }
 
 void Node::insert(std::string word, int frequency, std::string& data) {
+
+  //std::cout << data << std::endl;
+
 	int wordLength = word.length();
 	// int dataLength = data.size();
 	for (auto it = sons_.begin(); it != sons_.end(); it++) {
@@ -49,14 +52,27 @@ void Node::insert(std::string word, int frequency, std::string& data) {
 
 			if (i < wordLength) {
 				it->frequency_ = 0;
+
+        std::cout << "wordsub: " << word.substr(i) << std::endl;
+
 				addSon(it->sons_, frequency, data, word.substr(i));
 				return;
 			}
 		}
-		addSon(sons_, frequency, data, word);
 	}
+	addSon(sons_, frequency, data, word);
 }
 
 void Node::serialize() {
 
+}
+
+void Node::print(const std::string data)
+{
+  for (int i = start_; i < start_ + length_; i++)
+    std::cout << data[i];
+
+  std::cout << " " << frequency_ << std::endl;
+  for (auto son : sons_)
+    son.print(data);
 }
