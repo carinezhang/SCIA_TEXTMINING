@@ -24,16 +24,17 @@ int main(int argc, char **argv)
     return 255;
   }
   // Process file
-  Trie trie();
-  std::string word;
-  std::string freq;
+  Trie trie = Trie();
+  char *word;
+  char *freq;
   while (infile >> word >> freq)
   {
-    trie.insert(word, std::atoi(freq));
+    std::string w(word);
+    trie.insert(w, std::atoi(freq));
   }
   infile.close();
   // Write the trie in the output file
-  std::ofstream output(output_name, std::ios::binary);
+  std::fstream output(output_name, std::ios::binary);
   if (!output.is_open())
   {
     std::cout << "File not found: " << filename << std::endl;
