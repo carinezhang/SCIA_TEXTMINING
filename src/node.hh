@@ -1,4 +1,5 @@
 #pragma once
+#include <fstream>
 #include <iostream>
 #include <list>
 #include <string>
@@ -10,7 +11,7 @@ class Node {
     ~Node();
 		void insert(std::string word, int frequency, std::string& data);
 		void addSon(int frequency, std::string& data, std::string word);
-		void serialize(std::ostream& output);
+		void serialize(std::fstream& output);
     /**
      * Print the node and its sons.
      *

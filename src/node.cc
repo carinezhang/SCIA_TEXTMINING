@@ -63,7 +63,7 @@ void Node::insert(std::string word, int frequency, std::string& data) {
 	addSon(frequency, data, word);
 }
 
-void Node::serialize(std::ostream& output) {
+void Node::serialize(std::fstream& output) {
 	output.write((char*)&start_, sizeof(start_));
   output.write((char*)&length_, sizeof(length_));
   output.write((char*)&frequency_, sizeof(frequency_));
