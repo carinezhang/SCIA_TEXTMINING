@@ -10,7 +10,7 @@ class Node {
     ~Node();
 		void insert(std::string word, int frequency, std::string& data);
 		void addSon(int frequency, std::string& data, std::string word);
-		void serialize();
+		void serialize(std::ostream& output);
     /**
      * Print the node and its sons.
      *

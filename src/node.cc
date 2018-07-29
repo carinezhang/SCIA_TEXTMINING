@@ -2,6 +2,7 @@
 
 Node::Node()
 {
+	start_ = 0;
 }
 
 Node::Node(int start, int length, int frequency)
@@ -16,6 +17,7 @@ Node::~Node()
 
 
 void Node::addSon(int frequency, std::string& data, std::string word) {
+	std::cout << "add son " << word   << " "<< data.length() << std::endl;
 	sons_.push_back(Node(data.length(), word.length(), frequency));
 	data.append(word);
 	//return node
@@ -40,7 +42,7 @@ void Node::insert(std::string word, int frequency, std::string& data) {
 				it->frequency_ = frequency;
 				return;
 			}
-			if (i > length) {
+			if (i >= length) {
 				insert(word.substr(i), frequency, data);
 				return;
 			}
@@ -48,6 +50,8 @@ void Node::insert(std::string word, int frequency, std::string& data) {
 			Node node(start + i, length - i, it->frequency_);
 			it->length_ = i;
 			it->frequency_ = frequency;
+			node.sons_ = it->sons_;
+			it->sons_.clear();
 			it->sons_.push_back(node);
 			if (i < wordLength) {
 				it->frequency_ = 0;
@@ -59,8 +63,14 @@ void Node::insert(std::string word, int frequency, std::string& data) {
 	addSon(frequency, data, word);
 }
 
-void Node::serialize() {
-
+void Node::serialize(std::ostream& output) {
+	output.write((char*)&start_, sizeof(start_));
+  output.write((char*)&length_, sizeof(length_));
+  output.write((char*)&frequency_, sizeof(frequency_));
+  unsigned char nbSon = sons_.size();
+  output.write((char*)&nbSon, sizeof(nbSon));
+  for (auto it = sons_.begin(); it != sons_.end(); it++)
+    it->serialize(output);
 }
 
 void Node::print(const std::string data)

@@ -18,7 +18,7 @@ void Trie::serialize(std::fstream& output)
 {
   // TODO: Add output into the node.serialize() prototype
   output.is_open();
-  root_.serialize();
+  root_.serialize(output);
 }
 
 void Trie::print()

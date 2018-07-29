@@ -40,7 +40,6 @@ int main(int argc, char **argv)
 
     trie.insert(word, freq);
   }
-
   trie.print();
 
   infile.close();
