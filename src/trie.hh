@@ -2,6 +2,8 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
+#include <fstream>
 
 /**
  * @file
@@ -36,7 +38,15 @@ class Trie {
      * @param The frequency of the word.
      */
     void insert(std::string word, int freq);
+
     //std::vector<Node> search(std::string word, int dist);
+    
+    /**
+     * Write the current trie into the output file.
+     *
+     * @param The stream linked to the output file.
+     */
+    void serialize(std::ofstream output);
   private:
     std::string data_;
     Node root_;
