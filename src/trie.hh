@@ -39,8 +39,6 @@ class Trie {
      */
     void insert(std::string word, int freq);
 
-    //std::vector<Node> search(std::string word, int dist);
-    
     /**
      * Write the current trie into the output file.
      *
@@ -48,6 +46,7 @@ class Trie {
      */
     void serialize(std::fstream& output);
 
+    //std::vector<Node> search(std::string word, int dist);
 
   private:
     std::string data_;

@@ -3,6 +3,7 @@
 Trie::Trie()
 {
   this.root_ = Node();
+  this.data_ = "";
 }
 
 Trie::~Trie()

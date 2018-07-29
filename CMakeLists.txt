@@ -11,6 +11,8 @@ include_directories(src)
 
 set(SRC_COMPILE
     src/compiler.cc
+    src/node.cc
+    src/trie.cc
 )
 
 set(TEST
