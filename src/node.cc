@@ -1,5 +1,17 @@
 #include "node.hh"
 
+Node::Node()
+{
+}
+
+Node::Node(int start, int length, int frequency)
+	: start_(start),
+		length_(length),
+		frequency_(frequency)
+{
+}
+
+
 void Node::addSon(std::list<Node> sons, int frequency, std::string& data, std::string word) {
 	sons.push_back(Node(data.length(), word.length(), frequency));
 	data.append(word);
@@ -31,7 +43,6 @@ void Node::insert(std::string word, int frequency, std::string& data) {
 			it->length_ = i;
 			it->frequency_ = frequency;
 			it->sons_.push_back(node);
-		
 
 			if (i < wordLength) {
 				it->frequency_ = 0;
