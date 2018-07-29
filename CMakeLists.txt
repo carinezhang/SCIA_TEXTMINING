@@ -9,12 +9,7 @@ ADD_CUSTOM_TARGET (doc doxygen ./doc/doc.conf)
 
 include_directories(src)
 
-set(SRCBASE
-    $<TARGET_OBJECTS:node_obj>
-    $<TARGET_OBJECTS:trie_obj>)
-
 set(SRC_COMPILE
-    ${SRCBASE}
     src/compiler.cc
 )
 
