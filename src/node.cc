@@ -11,6 +11,9 @@ Node::Node(int start, int length, int frequency)
 {
 }
 
+Node::~Node()
+{}
+
 
 void Node::addSon(std::list<Node> sons, int frequency, std::string& data, std::string word) {
 	sons.push_back(Node(data.length(), word.length(), frequency));
