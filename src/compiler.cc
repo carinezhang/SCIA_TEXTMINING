@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 
   infile.close();
   // Write the trie in the output file
-  std::fstream output(output_name, std::ios::binary);
+  std::fstream output(output_name, std::fstream::out | std::fstream::binary);
   trie.serialize(output);
   output.close();
   return 0;
