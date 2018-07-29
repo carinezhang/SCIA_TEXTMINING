@@ -71,6 +71,14 @@ void Node::serialize(std::fstream& output) {
     it->serialize(output);
 }
 
+/*
+void Node::deserialize(std::istream& in)
+{
+  in.read((char*)&start_, sizeof(start_));
+  in.read((char*)&length_, sizeof(length_));
+}
+*/
+
 void Node::print(const std::string data)
 {
   for (int i = start_; i < start_ + length_; i++)
