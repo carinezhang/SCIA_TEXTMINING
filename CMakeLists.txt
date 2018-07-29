@@ -5,7 +5,9 @@ set(CMAKE_CXX_COMPILER "g++")
 set(CMAKE_CXX_FLAGS "-std=c++14 -pedantic -Wall -Wextra -Werror -O0 -g")
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3")
 
-ADD_CUSTOM_TARGET (doc doxygen ./doc/doc.conf)
+add_custom_target(doc
+    COMMAND doxygen doc.conf
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/doc)
 
 include_directories(src)
 
