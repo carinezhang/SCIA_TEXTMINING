@@ -16,8 +16,6 @@ void Trie::insert(std::string word, int freq)
 
 void Trie::serialize(std::fstream& output)
 {
-  // TODO: Add output into the node.serialize() prototype
-  output.is_open();
   root_.serialize(output);
 }
 
