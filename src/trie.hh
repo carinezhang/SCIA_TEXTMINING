@@ -52,6 +52,8 @@ class Trie {
     void print();
     //std::vector<Node> search(std::string word, int dist);
 
+    int nbprint();
+
     std::string data_;
   private:
     Node root_;

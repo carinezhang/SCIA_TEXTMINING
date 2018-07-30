@@ -34,18 +34,19 @@ int main(int argc, char **argv)
     int freq;
     if (!(iss >> word >> freq))
       break;
-
-    std::cout << "Line : " << word << " " << freq << std::endl;
-    std::cout << "data :" << trie.data_ << std::endl;
+    
+    //std::cout << "Line : " << word << " " << freq << std::endl;
+    //std::cout << "data :" << trie.data_ << std::endl;
 
     trie.insert(word, freq);
   }
-  trie.print();
+  //trie.print();
 
   infile.close();
   // Write the trie in the output file
   std::fstream output(output_name, std::fstream::out | std::fstream::binary);
   trie.serialize(output);
+  std::cout << "nb:" << trie.nbprint() << std::endl;
   output.close();
   return 0;
 }

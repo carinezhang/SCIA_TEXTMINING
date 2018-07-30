@@ -18,6 +18,7 @@ class Node {
      * @param The string containing all the substrings.
      */
     void print(const std::string data);
+		int nbprint();
 	private:
 		int start_;
 		int length_;

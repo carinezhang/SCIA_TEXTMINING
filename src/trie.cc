@@ -24,3 +24,10 @@ void Trie::print()
   std::cout << "===================" << std::endl;
   this->root_.print(data_);
 }
+
+
+int Trie::nbprint()
+{
+  std::cout << "===================" << std::endl;
+  return this->root_.nbprint();
+}
