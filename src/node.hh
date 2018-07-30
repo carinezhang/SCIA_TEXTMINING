@@ -29,15 +29,15 @@ class Node {
      */
     void print(const std::string data);
 		int nbprint();
-    /*
+    
     std::set<Search> distance(
-        std::string data, 
+        std::string& data, 
         std::string search, 
         int dist, 
         int maxDist, 
         int idx, 
         std::string word);
-        */
+        
 	private:
     std::set<Search> merge_set(
         std::set<Search> s1, 
