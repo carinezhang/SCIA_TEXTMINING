@@ -112,3 +112,48 @@ int Node::nbprint() {
 		return nb+1;
 	return nb;
 }
+
+std::set<Search> Node::distance(std::string data, std::string search, int dist, int maxDist, int idx, std::string word)
+{
+  std::set<Search> res;
+  if (dist > maxDist)
+    return res;
+  // Noeud contenant un mot
+  if (frequency_ != 0 && idx == length_)
+  {
+    std::string c = data.at(start_ + idx);
+    tmp_dist = c == search[0] ? 0 : 1;
+    tmp_dist += (search.size() - 1);
+    if (dist + tmp_dist <= maxDist)
+    {
+      auto s = Search(word + c, frequency_, dist + tmp_dist);
+      res.push_back(s);
+    }
+  }
+  if (dist + 1 < maxDist)
+  {
+    if (search.substr(1))
+    {
+      auto res_supp = 
+        distance(data, search.substr(1), dist + 1, maxDist, idx, word);
+    }
+  }
+  return res;
+}
+
+std::set<Search> Node::merge_set(std::set<Search> s1, std::set<Search> s2)
+{
+  for (auto s: s1)
+  {
+    auto ele = s2.find(s);
+    if (ele != s2.end())
+    {
+      if ((*ele).dist_ > s.dist_)
+        ele->dist_ = (s.dist_);
+      s2.erase(s);
+    }
+  }
+  for (auto s : s2)
+    s1.insert(s);
+  return s1;
+}

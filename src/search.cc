@@ -8,3 +8,13 @@ Search::Search(std::string w, int f, int d)
 
 Search::~Search()
 {}
+
+void Search::dist_set(int a)
+{
+  dist_ = a;
+}
+
+int Search::dist_get()
+{
+  return dist_;
+}

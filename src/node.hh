@@ -3,6 +3,9 @@
 #include <iostream>
 #include <list>
 #include <string>
+#include <set>
+
+#include "search.hh"
 
 class Node {
   public:
@@ -26,7 +29,19 @@ class Node {
      */
     void print(const std::string data);
 		int nbprint();
+    /*
+    std::set<Search> distance(
+        std::string data, 
+        std::string search, 
+        int dist, 
+        int maxDist, 
+        int idx, 
+        std::string word);
+        */
 	private:
+    std::set<Search> merge_set(
+        std::set<Search> s1, 
+        std::set<Search> s2);
 		int start_;
 		int length_;
 		int frequency_;
