@@ -48,5 +48,16 @@ int main(int argc, char **argv)
   trie.serialize(output);
   std::cout << "nb:" << trie.nbprint() << std::endl;
   output.close();
+
+  std::cout << "===============================" << std::endl;
+  std::cout << "DESERIALIZE" << std::endl;
+
+  std::fstream test_in(output_name, std::fstream::in | std::fstream::binary);
+  Trie trie_test = Trie();
+  trie_test.deserialize(test_in);
+  //trie_test.print(); 
+  std::cout << "nb:" << trie_test.nbprint() << std::endl;
+
+
   return 0;
 }

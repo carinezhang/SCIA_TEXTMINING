@@ -13,6 +13,13 @@ class Node {
 		void addSon(int frequency, std::string& data, std::string word);
 		void serialize(std::fstream& output);
     /**
+     * Read a file and convert it to a Node. Also construct its sons.
+     *
+     * @param The stream of the file.
+     */
+    void deserialize(std::istream& in);
+
+    /**
      * Print the node and its sons.
      *
      * @param The string containing all the substrings.

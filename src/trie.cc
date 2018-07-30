@@ -20,6 +20,12 @@ void Trie::serialize(std::fstream& output)
   output << data_;
 }
 
+void Trie::deserialize(std::fstream& in)
+{
+  root_.deserialize(in);
+  in >> data_;
+}
+
 void Trie::print()
 {
   std::cout << "===================" << std::endl;

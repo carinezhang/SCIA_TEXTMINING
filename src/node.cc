@@ -78,13 +78,21 @@ void Node::serialize(std::fstream& output) {
     it->serialize(output);
 }
 
-/*
 void Node::deserialize(std::istream& in)
 {
   in.read((char*)&start_, sizeof(start_));
   in.read((char*)&length_, sizeof(length_));
+  in.read((char*)&frequency_, sizeof(frequency_));
+  unsigned char nb_sons = 0;
+  in.read((char*)&nb_sons, sizeof(nb_sons));
+  sons_.resize(nb_sons);
+  for (unsigned char i = 0; i < nb_sons; i++)
+  {
+    Node new_node;
+    new_node.deserialize(in);
+    sons_.push_back(new_node);
+  }
 }
-*/
 
 void Node::print(const std::string data)
 {
