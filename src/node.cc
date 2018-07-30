@@ -3,6 +3,8 @@
 Node::Node()
 {
 	start_ = 0;
+	length_ = 0;
+	frequency_ = 0;
 }
 
 Node::Node(int start, int length, int frequency)
@@ -31,17 +33,21 @@ void Node::insert(std::string word, int frequency, std::string& data) {
 	for (auto it = sons_.begin(); it != sons_.end(); it++) {
 		int start = it->start_;
 		int length = it->length_;
+		// same first letter
 		if (data[start] == word.at(0)) {
 			int i = 0;
+			//not at the end of the word, not at the end of the node, same letter at ith letter in node and word 
 			while (i < wordLength && i <length && data[start + i] == word.at(i)){
 				i++;
 			}
+			//end of the word and end of the node
 			if (i == wordLength && length == i) {
 				it->frequency_ = frequency;
 				return;
 			}
+			// word longer than node
 			if (i >= length) {
-				insert(word.substr(i), frequency, data);
+				it->insert(word.substr(i), frequency, data);
 				return;
 			}
 			//split current Node
@@ -54,8 +60,9 @@ void Node::insert(std::string word, int frequency, std::string& data) {
 			if (i < wordLength) {
 				it->frequency_ = 0;
         		it->addSon(frequency, data, word.substr(i));
-				return;
 			}
+			return;
+
 		}
 	}
 	addSon(frequency, data, word);
