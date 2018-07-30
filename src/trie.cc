@@ -17,6 +17,7 @@ void Trie::insert(std::string word, int freq)
 void Trie::serialize(std::fstream& output)
 {
   root_.serialize(output);
+  output << data_;
 }
 
 void Trie::print()
