@@ -11,7 +11,7 @@ class Search
     int dist_get();
     std::string word_;
     int freq_;
-    int dist_;
+    mutable int dist_;
 };
 
 bool operator< (const Search &left, const Search &right)

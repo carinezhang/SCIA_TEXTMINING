@@ -122,7 +122,7 @@ std::set<Search> Node::distance(std::string data, std::string search, int dist, 
   if (frequency_ != 0 && idx == length_)
   {
     std::string c = data.at(start_ + idx);
-    tmp_dist = c == search[0] ? 0 : 1;
+    auto tmp_dist = c == search[0] ? 0 : 1;
     tmp_dist += (search.size() - 1);
     if (dist + tmp_dist <= maxDist)
     {
