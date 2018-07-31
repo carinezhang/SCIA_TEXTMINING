@@ -180,10 +180,6 @@ std::vector<Search> Node::distance(std::string &data, std::string search, int di
 				res = merge_set(res, res_transp);
 			}
 			std::cout << "IDX != max length" << std::endl;
-			// if (search.length() > 0)// && search())
-			int mdist = 1;
-			//if (search.length() > 0 && data[start_ + idx + 1] == search.at(0))
-			//	mdist = 0;
 			std::cout << "IDX != max length subs" << std::endl;
 			std::cout << search <<"idx " << idx << "length" << length_ << std::endl;
 			auto res_subs =
@@ -211,9 +207,6 @@ std::vector<Search> Node::distance(std::string &data, std::string search, int di
 						son->distance(data, searchsub, dist, maxDist, 0, word + c );
 					res = merge_set(res, res_transp);
 				}
-				int mdist = 1;
-				//if (search.length() > 0 && data[son->start_] == search.at(0))
-				//	mdist = 0;
 				std::cout << "IDX == max length subs" << std::endl;
 				std::cout << search << " " <<c<< std::endl;
 
