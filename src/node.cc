@@ -148,8 +148,8 @@ std::vector<Search> Node::distance(std::string &data, std::string search, int di
 	{
 		std::cout << "1if" <<std::endl;
 		auto tmp_dist = c == search[0] ? 0 : 1;
-		if (search != "") 
-			tmp_dist += (search.length() - 1);
+    if (search != "")
+		  tmp_dist += (search.length() - 1);
 		if (dist + tmp_dist <= maxDist)
 		{
 			std::cout << "1if insert search" << std::endl;
@@ -175,6 +175,9 @@ std::vector<Search> Node::distance(std::string &data, std::string search, int di
 		{
 			std::cout << "IDX != max length" << std::endl;
 			// if (search.length() > 0)// && search())
+			int mdist = 1;
+			//if (search.length() > 0 && data[start_ + idx + 1] == search.at(0))
+			//	mdist = 0;
 			std::cout << "IDX != max length subs" << std::endl;
 			std::cout << search <<"idx " << idx << "length" << length_ << std::endl;
 			auto res_subs =
@@ -191,11 +194,14 @@ std::vector<Search> Node::distance(std::string &data, std::string search, int di
 			std::cout << "IDX == max length" << std::endl;
 
 			// for loop with all the sons
+      
+      std::cout << "search : " << search << std::endl;
+
 			for (auto son = sons_.begin(); son != sons_.end(); son++)
 			{
 				int mdist = 1;
-				if (search.length() > 0 && data[son->start_] == search.at(0))
-					mdist = 0;
+				//if (search.length() > 0 && data[son->start_] == search.at(0))
+				//	mdist = 0;
 				std::cout << "IDX == max length subs" << std::endl;
 				std::cout << search << " " <<c<< std::endl;
 
