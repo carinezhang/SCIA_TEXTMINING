@@ -29,6 +29,7 @@ class Node {
      */
     void print(const std::string data);
 		int nbprint();
+		std::list<Node> get_sons();
     
     std::set<Search> distance(
         std::string& data, 

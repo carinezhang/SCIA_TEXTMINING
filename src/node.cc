@@ -124,54 +124,79 @@ int Node::nbprint()
 
 std::set<Search> Node::distance(std::string &data, std::string search, int dist, int maxDist, int idx, std::string word)
 {
+	std::cout << search <<" dist: " <<dist << " idx: "<< idx << " word: "<<word << " 1st letter data:"<<data[start_ + idx]<<std::endl;
 	std::set<Search> res;
-	if (dist > maxDist)
+	if (dist > maxDist) {
+		std::cout << "RETURN RES dist > maxDist" << dist << " " << maxDist << std::endl;
 		return res;
+	}
 	// Noeud contenant un mot
-	if (frequency_ != 0 && idx == length_)
+	if (frequency_ != 0 && idx == length_ -1)
 	{
+		std::cout << "1if" <<std::endl;
 		char c = data.at(start_ + idx);
 		auto tmp_dist = c == search[0] ? 0 : 1;
 		tmp_dist += (search.length() - 1);
 		if (dist + tmp_dist <= maxDist)
 		{
+			std::cout << "1if insert search" << std::endl;
+
 			auto s = Search(word + c, frequency_, dist + tmp_dist);
 			res.insert(s);
 		}
 	}
-	if (dist + 1 < maxDist)
+	if (dist + 1 <= maxDist)
 	{
+		std::cout << "2if" <<std::endl;
 		if (search.length() > 1)
 		{
+			std::cout << "2if dist" << std::endl;
+
 			auto res_supp =
 					distance(data, search.substr(1), dist + 1, maxDist, idx, word);
 			res = merge_set(res, res_supp);
 		}
 		// We iterate over the word
-		if (idx != length_ - 1)
+		if (idx < length_ - 1)
 		{
+			std::cout << "IDX != max length" << std::endl;
 			// if (search.length() > 0)// && search())
 			int mdist = 1;
 			if (search.length() > 0 && data[start_ + idx + 1] == search.at(0))
 				mdist = 0;
+			std::cout << "IDX != max length subs" << std::endl;
+			std::cout << search <<"idx " << idx << "length" << length_ << std::endl;
+			std::string searchsub = search;
+			if (search.length() > 0)
+				searchsub = searchsub.substr(1);
 			auto res_subs =
-					distance(data, search.substr(1), dist + mdist, maxDist, idx+1, word);
+					distance(data, searchsub, dist + mdist, maxDist, idx + 1, word);
 			res = merge_set(res, res_subs);
+			std::cout << "IDX != max length insert" << std::endl;
+
 			auto res_insert =
 					distance(data, search, dist + 1, maxDist, idx + 1, word);
 			res = merge_set(res, res_insert);
 		}
 		else
 		{
+			std::cout << "IDX == max length" << std::endl;
+
 			// for loop with all the sons
 			for (auto son = sons_.begin(); son != sons_.end(); son++)
 			{
 				int mdist = 1;
 				if (search.length() > 0 && data[son->start_] == search.at(0))
 					mdist = 0;
+				std::cout << "IDX == max length subs" << std::endl;
+				std::string searchsub = search;
+				if (search.length() > 0)
+					searchsub = searchsub.substr(1);
 				auto res_subs =
-						son->distance(data, search.substr(1), dist + mdist, maxDist, 0, word);
+						son->distance(data, searchsub, dist + mdist, maxDist, 0, word);
 				res = merge_set(res, res_subs);
+				std::cout << "IDX == max length insert" << std::endl;
+
 				auto res_insert =
 						son->distance(data, search, dist + 1, maxDist, 0, word);
 				res = merge_set(res, res_insert);
@@ -209,4 +234,9 @@ void Node::printword(std::string& data, std::string begin){
 	for (auto son = sons_.begin(); son != sons_.end(); son++) {
 		son->printword(data, begin);
 	}
+}
+
+
+std::list<Node> Node::get_sons(){
+	return sons_;
 }

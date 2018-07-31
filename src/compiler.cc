@@ -62,7 +62,7 @@ int main(int argc, char **argv)
   std::cout << argc << argv << std::endl;
   std::cout << "=========================" << std::endl;
   
-  auto res = trie_test.search("test", 0);
+  auto res = trie_test.search("too", 2);
   std::cout << "SEARCH nb:" << res.size() << std::endl;
   trie_test.printdist(res);
   std::cout << "=========================" << std::endl;

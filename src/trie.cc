@@ -40,7 +40,15 @@ int Trie::nbprint()
 }
 
 std::set<Search> Trie::search(std::string word, int dist) {
-  return root_.distance(data_, word, 0, dist, 0, "");
+  std::set<Search> res;
+  auto sons = root_.get_sons();
+  for (auto son = sons.begin(); son != sons.end(); son++) {
+    std::cout << "son" << std::endl;
+    auto tmp = root_.distance(data_, word, 0, dist, 0, "");
+    res = root_.merge_set(res, tmp);
+  }
+  return res;
+  //return root_.distance(data_, word, -1, dist, 0, "");
 }
 
 void Trie::printword(){
