@@ -1,0 +1,1 @@
+g++   -std=c++14 -pedantic -Wall -Wextra -Werror -O3    CMakeFiles/TextMiningApp.dir/src/app.cc.o CMakeFiles/TextMiningApp.dir/src/node.cc.o CMakeFiles/TextMiningApp.dir/src/trie.cc.o CMakeFiles/TextMiningApp.dir/src/search.cc.o  -o TextMiningApp -rdynamic 
