@@ -40,9 +40,7 @@ int main(int argc, char **argv)
 
   std::fstream output(output_name, std::fstream::out | std::fstream::binary);
   trie.serialize(output);
-  std::cout << "nb:" << trie.nbprint() << std::endl;
   output.close();
-
 
   return 0;
 }
