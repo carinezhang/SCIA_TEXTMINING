@@ -61,7 +61,7 @@ int main(int argc, char **argv)
   
   std::cout << "=========================" << std::endl;
   
-  auto res = trie_test.search("test", 1);
+  auto res = trie_test.search("bonjour", 0);
   std::cout << "SEARCH nb:" << res.size() << std::endl;
   res =trie_test.sort(res);
   trie_test.printdist(res);

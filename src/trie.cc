@@ -73,7 +73,26 @@ void Trie::printword(){
   root_.printword(data_, "");
 } 
 void Trie::printdist(std::vector<Search> distances) {
-	for (auto d = distances.begin(); d != distances.end(); d++) {
-		std::cout << "word: " << d->word_ << " freq: " << d->freq_ << " dist: " << d->dist_ << std::endl;
-	}
+  std::cout << "[";
+  int size = distances.size();
+  if (size >= 1) {
+    auto d = distances.begin();
+    for (; d != distances.end() - 1; d++) {
+      std::cout << "{\"word\":\""
+                << d->word_
+                << "\",\"freq\":"
+                << d->freq_
+                << ",\"distance\":"
+                << d->dist_ 
+                << "},";
+    }
+    std::cout << "{\"word\":\""
+              << d->word_
+              << "\",\"freq\":"
+              << d->freq_
+              << ",\"distance\":"
+              << d->dist_ 
+              << "}";
+  }
+  std::cout << "]";
 }
