@@ -1,3 +1,0 @@
-/home/patafoin/Scolaire/ING2/TEXTMINING/SCIA_TEXTMINING/build/CMakeFiles/TextMiningApp.dir
-/home/patafoin/Scolaire/ING2/TEXTMINING/SCIA_TEXTMINING/build/CMakeFiles/TextMiningCompiler.dir
-/home/patafoin/Scolaire/ING2/TEXTMINING/SCIA_TEXTMINING/build/CMakeFiles/doc.dir
