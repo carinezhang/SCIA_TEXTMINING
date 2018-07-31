@@ -37,11 +37,18 @@ class Node {
         int maxDist, 
         int idx, 
         std::string word);
-        
-	private:
+
+    /**
+     * Merge two sets and remove same elements.
+     *
+     * @param The first set.
+     * @param The second set.
+     */
     std::set<Search> merge_set(
         std::set<Search> s1, 
         std::set<Search> s2);
+        
+	private:
 		int start_;
 		int length_;
 		int frequency_;

@@ -8,6 +8,7 @@
 
 int main(int argc, char **argv)
 {
+  /*
   std::cout << "Size structure: 4" << std::endl;
   if (argc != 3)
   {
@@ -57,7 +58,9 @@ int main(int argc, char **argv)
   trie_test.deserialize(test_in);
   //trie_test.print(); 
   std::cout << "nb:" << trie_test.nbprint() << std::endl;
-
-
+  */
+  std::cout << argc << argv << std::endl;
+  std::cout << "=========================" << std::endl;
+  
   return 0;
 }

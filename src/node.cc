@@ -132,11 +132,18 @@ std::set<Search> Node::distance(std::string& data, std::string search, int dist,
   }
   if (dist + 1 < maxDist)
   {
-    //if (search.substr(1))
     if (search.length() > 1)
-	{
+	  {
       auto res_supp = 
         distance(data, search.substr(1), dist + 1, maxDist, idx, word);
+      res = merge_set(res, res_supp);
+    }
+    // We iterate over the word
+    if (idx != length_ - 1)
+    {
+      if (search.length > 0 && search())
+    } else {
+      // for loop with all the sons
     }
   }
   return res;

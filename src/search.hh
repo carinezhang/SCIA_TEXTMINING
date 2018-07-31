@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 
 class Search
@@ -13,7 +14,7 @@ class Search
     mutable int dist_;
 };
 
-bool operator< (const Search &left, const Search &right)
+inline bool operator< (const Search &left, const Search &right)
 {
   return left.word_ < right.word_;
 }

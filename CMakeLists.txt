@@ -15,6 +15,7 @@ set(SRC_COMPILE
     src/compiler.cc
     src/node.cc
     src/trie.cc
+    src/search.cc
 )
 
 set(TEST
