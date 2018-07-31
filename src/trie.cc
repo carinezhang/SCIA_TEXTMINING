@@ -44,7 +44,7 @@ std::set<Search> Trie::search(std::string word, int dist) {
   auto sons = root_.get_sons();
   for (auto son = sons.begin(); son != sons.end(); son++) {
     std::cout << "son" << std::endl;
-    auto tmp = root_.distance(data_, word, 0, dist, 0, "");
+    auto tmp = son->distance(data_, word, 0, dist, 0, "");
     res = root_.merge_set(res, tmp);
   }
   return res;
@@ -56,6 +56,6 @@ void Trie::printword(){
 } 
 void Trie::printdist(std::set<Search> distances) {
 	for (auto d = distances.begin(); d != distances.end(); d++) {
-		std::cout << "word: " << d->word_ << "freq: " << d->freq_ << "dist: " << d->dist_ << std::endl;
+		std::cout << "word: " << d->word_ << " freq: " << d->freq_ << " dist: " << d->dist_ << std::endl;
 	}
 }
