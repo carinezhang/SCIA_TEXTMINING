@@ -59,7 +59,6 @@ int main(int argc, char **argv)
   //trie_test.printword(); 
   std::cout << "nb:" << trie_test.nbprint() << std::endl;
   
-  std::cout << argc << argv << std::endl;
   std::cout << "=========================" << std::endl;
   
   auto res = trie_test.search("test", 1);
