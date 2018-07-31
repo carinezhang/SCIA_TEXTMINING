@@ -43,7 +43,6 @@ std::vector<Search> Trie::search(std::string word, int dist) {
   std::vector<Search> res;
   auto sons = root_.get_sons();
   for (auto son = sons.begin(); son != sons.end(); son++) {
-    std::cout << "son" << std::endl;
     auto tmp = son->distance(data_, word, 0, dist, 0, "");
     res = root_.merge_set(res, tmp);
   }

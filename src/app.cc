@@ -45,7 +45,7 @@ int main(int argc, char **argv)
     std::string search = strings[2];
 
     auto result = trie.search(search, maxDist);
-    trie.printdist(result);
+    trie.printdist(trie.sort(result));
   }
 
   return 0;
