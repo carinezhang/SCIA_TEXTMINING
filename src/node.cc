@@ -208,10 +208,10 @@ std::vector<Search> Node::merge_set(std::vector<Search> s1, std::vector<Search> 
 {
 	for (auto s: s2) {
 		bool b = false;
-		for (auto tmp: s1) {
+		for (auto& tmp: s1) {
 			if (tmp.word_ == s.word_) {
 				if (tmp.dist_ > s.dist_) {
-					tmp.dist_ = s.dist_; 
+					tmp.dist_ = s.dist_;
 				}
 				b = true;
 				break;
