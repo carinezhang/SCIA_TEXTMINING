@@ -39,8 +39,8 @@ int Trie::nbprint()
   return this->root_.nbprint();
 }
 
-std::set<Search> Trie::search(std::string word, int dist) {
-  std::set<Search> res;
+std::vector<Search> Trie::search(std::string word, int dist) {
+  std::vector<Search> res;
   auto sons = root_.get_sons();
   for (auto son = sons.begin(); son != sons.end(); son++) {
     std::cout << "son" << std::endl;
@@ -50,11 +50,29 @@ std::set<Search> Trie::search(std::string word, int dist) {
   return res;
   //return root_.distance(data_, word, -1, dist, 0, "");
 }
+std::vector<Search> Trie::sort(std::vector<Search> s) {
+  std::sort(s.begin(), s.end(), sortVector);
+  return s;
+}
+
+bool Trie::sortVector(Search s1, Search s2){
+  if (s1.dist_ < s2.dist_)
+    return true;
+  if (s1.dist_ > s2.dist_)
+    return false;
+  if (s1.freq_ > s2.freq_)
+    return true;
+  if (s1.freq_ < s2.freq_)
+    return false;
+  if (s1.word_ < s2.word_)
+    return true;
+  return false;
+}
 
 void Trie::printword(){
   root_.printword(data_, "");
 } 
-void Trie::printdist(std::set<Search> distances) {
+void Trie::printdist(std::vector<Search> distances) {
 	for (auto d = distances.begin(); d != distances.end(); d++) {
 		std::cout << "word: " << d->word_ << " freq: " << d->freq_ << " dist: " << d->dist_ << std::endl;
 	}

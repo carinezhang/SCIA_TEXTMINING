@@ -4,6 +4,7 @@
 #include <list>
 #include <string>
 #include <set>
+#include <vector>
 
 #include "search.hh"
 
@@ -31,7 +32,7 @@ class Node {
 		int nbprint();
 		std::list<Node> get_sons();
     
-    std::set<Search> distance(
+    std::vector<Search> distance(
         std::string& data, 
         std::string search, 
         int dist, 
@@ -45,9 +46,9 @@ class Node {
      * @param The first set.
      * @param The second set.
      */
-    std::set<Search> merge_set(
-        std::set<Search> s1, 
-        std::set<Search> s2);
+    std::vector<Search> merge_set(
+        std::vector<Search> s1, 
+        std::vector<Search> s2);
     void printword(std::string& data, std::string begin);
 	private:
 		int start_;

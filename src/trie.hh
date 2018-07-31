@@ -52,8 +52,11 @@ class Trie {
      */
     void print();
     void printword();
-    std::set<Search> search(std::string word, int dist);
-    void printdist(std::set<Search> distances);
+    std::vector<Search> search(std::string word, int dist);
+    std::vector<Search> sort(std::vector<Search> s);
+    static bool sortVector(Search s1, Search s2);
+
+    void printdist(std::vector<Search> distances);
     int nbprint();
     std::string data_;
   private:

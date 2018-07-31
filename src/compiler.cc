@@ -64,6 +64,7 @@ int main(int argc, char **argv)
   
   auto res = trie_test.search("test", 1);
   std::cout << "SEARCH nb:" << res.size() << std::endl;
+  res =trie_test.sort(res);
   trie_test.printdist(res);
   std::cout << "=========================" << std::endl;
   return 0;
