@@ -18,7 +18,15 @@ set(SRC_COMPILE
     src/search.cc
 )
 
+set(SRC_APP
+    src/app.cc
+    src/node.cc
+    src/trie.cc
+    src/search.cc
+)
+
 set(TEST
     ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 
 add_executable(TextMiningCompiler ${SRC_COMPILE})
+add_executable(TextMiningApp ${SRC_COMPILE})
