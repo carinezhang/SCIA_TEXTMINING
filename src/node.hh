@@ -90,7 +90,7 @@ class Node {
      *
      * @return The sons of the node.
      */
-		std::list<Node> get_sons();
+		std::list<Node*> get_sons();
     
     /**
      * Compute the vector of Search containing the word at a maxDist Demereau-Levenstein distance.
@@ -150,5 +150,5 @@ class Node {
     /**
      * The sons of this node.
      */
-		std::list<Node> sons_;
+		std::list<Node*> sons_;
 };

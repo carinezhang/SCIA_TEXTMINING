@@ -21,7 +21,7 @@ Node::~Node()
 void Node::addSon(int frequency, std::string &data, std::string word)
 {
 	//std::cout << "add son " << word   << " "<< data.length() << std::endl;
-	sons_.push_back(Node(data.length(), word.length(), frequency));
+	sons_.push_back(new Node(data.length(), word.length(), frequency));
 	data.append(word);
 	//return node
 }
@@ -34,8 +34,8 @@ void Node::insert(std::string word, int frequency, std::string &data)
 
 	for (auto it = sons_.begin(); it != sons_.end(); it++)
 	{
-		int start = it->start_;
-		int length = it->length_;
+		int start = (*it)->start_;
+		int length = (*it)->length_;
 		// same first letter
 		if (data[start] == word.at(0))
 		{
@@ -48,26 +48,26 @@ void Node::insert(std::string word, int frequency, std::string &data)
 			//end of the word and end of the node
 			if (i == wordLength && length == i)
 			{
-				it->frequency_ = frequency;
+				(*it)->frequency_ = frequency;
 				return;
 			}
 			// word longer than node
 			if (i >= length)
 			{
-				it->insert(word.substr(i), frequency, data);
+				(*it)->insert(word.substr(i), frequency, data);
 				return;
 			}
 			//split current Node
-			Node node(start + i, length - i, it->frequency_);
-			it->length_ = i;
-			it->frequency_ = frequency;
-			node.sons_ = it->sons_;
-			it->sons_.clear();
-			it->sons_.push_back(node);
+			Node *node = new Node(start + i, length - i, (*it)->frequency_);
+			(*it)->length_ = i;
+			(*it)->frequency_ = frequency;
+			node->sons_ = (*it)->sons_;
+			(*it)->sons_.clear();
+			(*it)->sons_.push_back(node);
 			if (i < wordLength)
 			{
-				it->frequency_ = 0;
-				it->addSon(frequency, data, word.substr(i));
+				(*it)->frequency_ = 0;
+				(*it)->addSon(frequency, data, word.substr(i));
 			}
 			return;
 		}
@@ -83,7 +83,7 @@ void Node::serialize(std::fstream &output)
 	unsigned char nbSon = sons_.size();
 	output.write((char *)&nbSon, sizeof(nbSon));
 	for (auto it = sons_.begin(); it != sons_.end(); it++)
-		it->serialize(output);
+		(*it)->serialize(output);
 }
 
 void Node::deserialize(std::istream &in)
@@ -96,8 +96,8 @@ void Node::deserialize(std::istream &in)
 	sons_.resize(nb_sons);
 	for (unsigned char i = 0; i < nb_sons; i++)
 	{
-		Node new_node;
-		new_node.deserialize(in);
+		Node *new_node = new Node();
+		new_node->deserialize(in);
 		sons_.push_back(new_node);
 	}
 }
@@ -109,14 +109,14 @@ void Node::print(const std::string data)
 
 	std::cout << " " << frequency_ << std::endl;
 	for (auto son : sons_)
-		son.print(data);
+		son->print(data);
 }
 
 int Node::nbprint()
 {
 	int nb = 0;
 	for (auto son = sons_.begin(); son != sons_.end(); son++)
-		nb += son->nbprint();
+		nb += (*son)->nbprint();
 	if (frequency_ != 0)
 		return nb + 1;
 	return nb;
@@ -132,7 +132,7 @@ std::vector<Search> Node::distance(std::string &data, std::string search, int di
 			res = distance(data, search.substr(1), dist, maxDist, idx + 1, word + c);
 		else {
 			for (auto son = sons_.begin(); son != sons_.end(); son++) {
-				auto tmp = son->distance(data, search.substr(1), dist, maxDist, 0, word + c);
+				auto tmp = (*son)->distance(data, search.substr(1), dist, maxDist, 0, word + c);
 				res = merge_set(res, tmp);
 			}
 		}
@@ -185,17 +185,17 @@ std::vector<Search> Node::distance(std::string &data, std::string search, int di
 			// for loop with all the sons
 			for (auto son = sons_.begin(); son != sons_.end(); son++)
 			{
-				if (search.length() > 1 && c == search.at(1) && search.at(0) == data[son->start_])
+				if (search.length() > 1 && c == search.at(1) && search.at(0) == data[(*son)->start_])
 				{
 					auto res_transp = 
-						son->distance(data, searchsub, dist, maxDist, 0, word + c );
+						(*son)->distance(data, searchsub, dist, maxDist, 0, word + c );
 					res = merge_set(res, res_transp);
 				}
 				auto res_subs =
-						son->distance(data, searchsub, dist + 1, maxDist, 0, word + c);
+						(*son)->distance(data, searchsub, dist + 1, maxDist, 0, word + c);
 				res = merge_set(res, res_subs);
 				auto res_insert =
-						son->distance(data, search, dist + 1, maxDist, 0, word + c);
+						(*son)->distance(data, search, dist + 1, maxDist, 0, word + c);
 				res = merge_set(res, res_insert);
 			}
 		}
@@ -231,11 +231,11 @@ void Node::printword(std::string& data, std::string begin){
 		std::cout << begin << std::endl;
 	}
 	for (auto son = sons_.begin(); son != sons_.end(); son++) {
-		son->printword(data, begin);
+		(*son)->printword(data, begin);
 	}
 }
 
 
-std::list<Node> Node::get_sons(){
+std::list<Node*> Node::get_sons(){
 	return sons_;
 }
