@@ -7,6 +7,17 @@
 #include <vector>
 
 #include "search.hh"
+/**
+ * @file
+ * @author drapal_g zhang_d
+ *
+ * @section DESCRIPTION
+ *
+ * The Node class represent a node of a Patricia-Trie containing in Trie class.
+ * It contains the start, length and frequency of the word 
+ * in the Trie's data_ attribute.
+ *
+ */
 
 class Node {
   public:
@@ -92,6 +103,8 @@ class Node {
      *                  Because we use a patricia trie, a node contains a string 
      *                  and not 1 char so we iterate over them.
      * @param word    The word we are currently on from the root node to the current node.
+     *
+     * @return All the words at max maxDist distance.
      */
     std::vector<Search> distance(
         std::string& data, 
@@ -106,6 +119,8 @@ class Node {
      *
      * @param The first set.
      * @param The second set.
+     *
+     * @return The 2 sets merged.
      */
     std::vector<Search> merge_set(
         std::vector<Search> s1, 
