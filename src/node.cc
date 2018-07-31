@@ -173,6 +173,12 @@ std::vector<Search> Node::distance(std::string &data, std::string search, int di
 		// We iterate over the word
 		if (idx < length_ - 1)
 		{
+			if (search.length() > 1 && c == search.at(1) && search.at(0) == data[start_ + idx + 1])
+			{
+				auto res_transp = 
+					distance(data, searchsub, dist, maxDist, idx + 1, word + c );
+				res = merge_set(res, res_transp);
+			}
 			std::cout << "IDX != max length" << std::endl;
 			// if (search.length() > 0)// && search())
 			std::cout << "IDX != max length subs" << std::endl;
@@ -193,6 +199,12 @@ std::vector<Search> Node::distance(std::string &data, std::string search, int di
 			// for loop with all the sons
 			for (auto son = sons_.begin(); son != sons_.end(); son++)
 			{
+				if (search.length() > 1 && c == search.at(1) && search.at(0) == data[son->start_])
+				{
+					auto res_transp = 
+						son->distance(data, searchsub, dist, maxDist, 0, word + c );
+					res = merge_set(res, res_transp);
+				}
 				int mdist = 1;
 				if (search.length() > 0 && data[son->start_] == search.at(0))
 					mdist = 0;
@@ -222,6 +234,7 @@ std::vector<Search> Node::merge_set(std::vector<Search> s1, std::vector<Search> 
 				if (tmp.dist_ > s.dist_) {
 					tmp.dist_ = s.dist_; 
 				}
+				b = true;
 				break;
 			}
 		}
