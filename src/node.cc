@@ -98,7 +98,7 @@ void Node::deserialize(std::istream &in)
 	{
 		Node *new_node = new Node();
 		new_node->deserialize(in);
-		sons_.push_back(new_node);
+		sons_[i] =(new_node);
 	}
 }
 
@@ -125,6 +125,7 @@ int Node::nbprint()
 std::vector<Search> Node::distance(std::string &data, std::string search, int dist, int maxDist, int idx, std::string word)
 {
 	char c = data.at(start_ + idx);		
+
 	std::vector<Search> res;
 
 	if (search.length() > 0 && c == search.at(0)) {
@@ -236,6 +237,6 @@ void Node::printword(std::string& data, std::string begin){
 }
 
 
-std::list<Node*> Node::get_sons(){
+std::vector<Node*> Node::get_sons(){
 	return sons_;
 }
