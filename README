@@ -1,0 +1,63 @@
+===================== EXPLICATIONS DU PROJET ================================
+
+Pour lancer le projet :
+  ./configure
+  cd build
+  make
+  cp ../words.txt .
+  ./TextMiningCompiler words.txt dict.bin
+  echo "approx 0 test" | ./TextMiningApp dict.bin
+
+
+Ce projet a pour but de créer un dictionnaire à partir d'un fichier .txt contenant des mots et des fréquences sous le format suivant :
+  mot freq
+
+Il va dans un premier temps avec le binaire TextMiningCompiler créer un patricia-trie 
+à partir des mots donnés en input. Il va ensuite le sérialiser dans un dictionnaire binaire.
+La commande pour faire ceci est la suivante :
+    ./TextMiningCompiler words.txt dict.bin
+
+Dans un second temps, on va chercher un mot dans le dictionnaire précédemment créé à l'aide de la commande suivante :
+  echo "approx 0 test" | ./TextMiningApp dict.bin
+où :
+  0 est la distance maximale que l'on cherche
+  test est le mot que l'on cherche
+
+Il va désérialiser le fichier binaire puis va chercher le mot dans le patricia-trie.
+
+
+===================== QUESTIONS ================================
+
+1.
+  Nous avons choisi de créer 3 classes dans notre projet :
+    - Trie: le trie contenant un Node racine qui est une interface pour l'utilisateur. Elle contient toutes les fonctions
+            qui seront lancées sur le Patricia-Trie comme insert, search...
+            Il contient également la string des mots présents dans le trie.
+    - Node: un noeud du trie. Il contient la fréquence, le point de départ et la taille du mot contenu dans la string data du Trie.
+            Il contient également les fils du noeud.
+    - Search: C'est la classe que nous utilisons pour stocker les résultats des recherches des mots de la partie App du projet.
+              Il contient le mot trouvé, la fréquence de ce mot ainsi que la distance entre ce mot et le mot recherché.
+
+2.
+  Nous avons testé les fonctions de manière indépendantes au fur et à mesure que nous écrivions le projet.
+  La plupart des tests de la partie Compiler se sont fait à l'oeil. On créait le trie puis vérifiait ce qu'on obtenait avec ce qu'on
+  avait sur papier. Bien évidemment nous n'avons pas pu testé sur de trop gros trie sauf en comparant le nombre de noeuds même si
+  cela ne montre pas que deux tries sont identiques.
+  La plupart des tests pour la partie recherche de la partie App ont été fait en faisant des diffs entre la ref et ce que nous obtenons.
+
+3.
+  Dans certains cas, notre algo ne calcule pas bien la distance mais nous ne comprenons pas vraiment pourquoi malgré des tests :/
+
+4.
+  La structure de données implémentée est le Patricia-trie. Nous avons choisi cette structure après quelques tests avec un trie classique.
+  En effet, la contrainte de RAM n'était pas du tout respectée.
+  De plus, c'était la structure de données privilégiée dans le cours.
+
+5.
+  
+
+6.
+  En nettoyant le code et en vérifiant plus les free et allocations. 
+
+7.
+  Plus de corrections, une meilleure gestion de la mémoire.
