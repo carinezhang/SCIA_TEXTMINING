@@ -8,7 +8,7 @@
 
 int main(int argc, char **argv)
 {
-  /*
+  
   std::cout << "Size structure: 4" << std::endl;
   if (argc != 3)
   {
@@ -56,11 +56,15 @@ int main(int argc, char **argv)
   std::fstream test_in(output_name, std::fstream::in | std::fstream::binary);
   Trie trie_test = Trie();
   trie_test.deserialize(test_in);
-  //trie_test.print(); 
+  trie_test.printword(); 
   std::cout << "nb:" << trie_test.nbprint() << std::endl;
-  */
+  
   std::cout << argc << argv << std::endl;
   std::cout << "=========================" << std::endl;
   
+  auto res = trie_test.search("test", 0);
+  std::cout << "SEARCH nb:" << res.size() << std::endl;
+  trie_test.printdist(res);
+  std::cout << "=========================" << std::endl;
   return 0;
 }

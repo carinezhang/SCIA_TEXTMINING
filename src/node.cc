@@ -197,3 +197,16 @@ std::set<Search> Node::merge_set(std::set<Search> s1, std::set<Search> s2)
 		s1.insert(s);
 	return s1;
 }
+
+void Node::printword(std::string& data, std::string begin){
+	for (int i = 0; i < length_; i++) {
+		begin +=data[start_ + i];
+	}
+	
+	if (frequency_ != 0) {
+		std::cout << begin << std::endl;
+	}
+	for (auto son = sons_.begin(); son != sons_.end(); son++) {
+		son->printword(data, begin);
+	}
+}

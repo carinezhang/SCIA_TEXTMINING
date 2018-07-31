@@ -47,7 +47,7 @@ class Node {
     std::set<Search> merge_set(
         std::set<Search> s1, 
         std::set<Search> s2);
-        
+    void printword(std::string& data, std::string begin);
 	private:
 		int start_;
 		int length_;

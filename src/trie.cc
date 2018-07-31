@@ -38,3 +38,16 @@ int Trie::nbprint()
   std::cout << "===================" << std::endl;
   return this->root_.nbprint();
 }
+
+std::set<Search> Trie::search(std::string word, int dist) {
+  return root_.distance(data_, word, 0, dist, 0, "");
+}
+
+void Trie::printword(){
+  root_.printword(data_, "");
+} 
+void Trie::printdist(std::set<Search> distances) {
+	for (auto d = distances.begin(); d != distances.end(); d++) {
+		std::cout << "word: " << d->word_ << "freq: " << d->freq_ << "dist: " << d->dist_ << std::endl;
+	}
+}

@@ -51,10 +51,10 @@ class Trie {
      * Print the trie.
      */
     void print();
-    //std::vector<Node> search(std::string word, int dist);
-
+    void printword();
+    std::set<Search> search(std::string word, int dist);
+    void printdist(std::set<Search> distances);
     int nbprint();
-
     std::string data_;
   private:
     Node root_;
