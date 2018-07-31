@@ -33,7 +33,7 @@ int main(int argc, char **argv)
     std::string s;    
     
     // Get the args
-    while (getline(std::cin, s, ' ')) {
+    while (getline(ss, s, ' ')) {
       strings.push_back(s);
     }
     if (strings.size() != 3 && strings[0] != "approx")
@@ -44,7 +44,8 @@ int main(int argc, char **argv)
     int maxDist = std::stoi(strings[1]);
     std::string search = strings[2];
 
-    //auto result = trie.search(search, maxDist);
+    auto result = trie.search(search, maxDist);
+    trie.printdist(result);
   }
 
   return 0;

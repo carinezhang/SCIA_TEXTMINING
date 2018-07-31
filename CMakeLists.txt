@@ -29,4 +29,4 @@ set(TEST
     ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 
 add_executable(TextMiningCompiler ${SRC_COMPILE})
-add_executable(TextMiningApp ${SRC_COMPILE})
+add_executable(TextMiningApp ${SRC_APP})
