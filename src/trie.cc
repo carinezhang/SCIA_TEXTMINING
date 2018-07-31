@@ -93,5 +93,5 @@ void Trie::printdist(std::vector<Search> distances) {
               << d->dist_ 
               << "}";
   }
-  std::cout << "]";
+  std::cout << "]" << std::endl;
 }
